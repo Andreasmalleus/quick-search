@@ -1,6 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-}
+  experimental: {
+    styledComponents: true,
+  },
+  images: {
+    dangerouslyAllowSVG: true,
+    domains: ["reststop.randomhouse.com"],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
