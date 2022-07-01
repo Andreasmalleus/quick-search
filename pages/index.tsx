@@ -1,27 +1,12 @@
 import type { NextPage } from "next";
-import Head from "next/head";
-import styled from "styled-components";
-import { DropDown } from "../components/dropdown/";
-import { NavBar } from "../components/NavBar";
+import { Layout } from "../components/Layout";
 
 const Home: NextPage = () => {
   return (
-    <>
-      <Head>
-        <title>Quick Search implementation</title>
-      </Head>
-      <Main>
-        <NavBar />
-        <DropDown />
-      </Main>
-    </>
+    <Layout title="Quick Search implementation">
+      <div></div>
+    </Layout>
   );
 };
 
 export default Home;
-
-const Main = styled.main`
-  background-image: linear-gradient(rgb(246, 249, 253), white);
-  width: 100%;
-  height: 100%;
-`;
