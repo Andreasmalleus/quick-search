@@ -20,7 +20,7 @@ export const WorkList = ({ works }: DefaultProps): JSX.Element => {
         const imgSrc = getImageSource(titles);
         return (
           <WorkItem
-            href={`https://www.amazon.com/search/s?k=${titleweb}`}
+            href={`https://www.amazon.com/search/s?k=${titleweb} ${authorweb}`}
             target={"_blank"}
             key={workid}
           >
