@@ -65,6 +65,7 @@ const StyledImage = styled(Image)`
 const Title = styled.div`
   font-size: 12px;
   color: black;
+  padding: 5px;
 `;
 
 const Menu = styled.div`
