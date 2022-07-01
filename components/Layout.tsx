@@ -1,5 +1,6 @@
 import Head from "next/head";
 import styled from "styled-components";
+import { DropDown } from "./dropdown";
 import { NavBar } from "./NavBar";
 
 interface LayoutProps {
@@ -16,6 +17,7 @@ export const Layout = ({ children, title }: LayoutProps): JSX.Element => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <NavBar />
+      <DropDown />
       <div>{children}</div>
     </Container>
   );

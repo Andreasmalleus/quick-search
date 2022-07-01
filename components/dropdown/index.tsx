@@ -9,6 +9,7 @@ import { WorkList } from "./WorkList";
 import { Error } from "./Error";
 import { Loading } from "./Loading";
 import Image from "next/image";
+import WithPortal from "../WithPortal";
 
 export const DropDown = (): JSX.Element => {
   const { works, isLoading, hasErrors } = useAppSelector(worksSelector);
@@ -28,8 +29,8 @@ export const DropDown = (): JSX.Element => {
   }
 
   return (
-    <Container>
-      <Content isOpen={isOpen}>
+    <WithPortal target="dropdown-root">
+      <Container isOpen={isOpen}>
         {isLoading || hasErrors ? null : (
           <Menu>
             <Title>Found results:</Title>
@@ -43,8 +44,8 @@ export const DropDown = (): JSX.Element => {
         )}
         {content}
         <Pointer></Pointer>
-      </Content>
-    </Container>
+      </Container>
+    </WithPortal>
   );
 };
 
@@ -79,20 +80,15 @@ const Menu = styled.div`
   position: sticky;
 `;
 
-const Container = styled.div`
-  position: relative;
-  margin: 15px;
-`;
-
-interface ContentProps {
+interface ContainerProps {
   isOpen: boolean;
 }
 
-const Content = styled.div<ContentProps>`
+const Container = styled.div<ContainerProps>`
   transition: opacity 0.5s linear;
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: 60px;
+  right: 10px;
   display: inline-block;
   background-color: white;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
