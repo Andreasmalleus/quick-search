@@ -6,6 +6,7 @@ import {
   showDropdown,
 } from "../pages/store/slices/dropdownSlice";
 import {
+  clearWorks,
   fetchWorksBySearchTerm,
   setLoading,
 } from "../pages/store/slices/worksSlice";
@@ -27,21 +28,23 @@ export const SearchBar = (): JSX.Element => {
     return () => clearTimeout(delayDebounceFn);
   }, [searchTerm]);
 
+  //handles the closing of dropdown
+  const handleClose = () => {
+    dispatch(closeDropdown());
+    dispatch(clearWorks());
+    setSearchTerm("");
+  };
+
+  //handles input change
   const handleChange = (input: ChangeEvent<HTMLInputElement>) => {
     const value = input.target.value;
     if (value == "") {
-      handleClose(value);
+      handleClose();
       return;
     }
     setSearchTerm(value);
     dispatch(setLoading());
     dispatch(showDropdown());
-  };
-
-  //handles the closing of dropdown
-  const handleClose = (value: string) => {
-    dispatch(closeDropdown());
-    setSearchTerm(value);
   };
 
   return (
@@ -66,9 +69,7 @@ export const SearchBar = (): JSX.Element => {
         width={15}
         height={15}
         style={{ cursor: "pointer" }}
-        onClick={() => {
-          handleClose("");
-        }}
+        onClick={handleClose}
       />
     </Container>
   );
