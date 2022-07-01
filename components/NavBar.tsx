@@ -1,9 +1,11 @@
+import { SearchBar } from "./SearchBar";
 import styled from "styled-components";
 
 export const NavBar = (): JSX.Element => {
   return (
     <Nav>
       <Title>Quick Search</Title>
+      <SearchBar />
     </Nav>
   );
 };
