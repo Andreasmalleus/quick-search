@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import styled from "styled-components";
+import { DropDown } from "../components/dropdown/";
 import { NavBar } from "../components/NavBar";
 
 const Home: NextPage = () => {
@@ -11,6 +12,7 @@ const Home: NextPage = () => {
       </Head>
       <Main>
         <NavBar />
+        <DropDown />
       </Main>
     </>
   );
