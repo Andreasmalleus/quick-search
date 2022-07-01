@@ -74,7 +74,7 @@ const Menu = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px;
+  padding-bottom: 5px;
   position: sticky;
 `;
 

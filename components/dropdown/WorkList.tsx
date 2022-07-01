@@ -14,7 +14,7 @@ export const WorkList = ({ works }: DefaultProps): JSX.Element => {
   };
 
   return (
-    <List>
+    <ScrollBarWrapper>
       {works.map((work: Work) => {
         const { workid, authorweb, titleweb, titles } = work;
         const imgSrc = getImageSource(titles);
@@ -37,12 +37,45 @@ export const WorkList = ({ works }: DefaultProps): JSX.Element => {
           </WorkItem>
         );
       })}
-    </List>
+    </ScrollBarWrapper>
   );
 };
 
+const ScrollBarWrapper = styled.div`
+  overflow-y: auto;
+  height: fit-content;
+  max-height: 260px;
+
+  &::-webkit-scrollbar {
+    background-color: #fff;
+    width: 16px;
+  }
+  ::-scrollbar-track {
+    background-color: #fff;
+  }
+
+  ::-webkit-scrollbar-track:hover {
+    background-color: #f4f4f4;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #babac0;
+    border-radius: 16px;
+    border: 5px solid #fff;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #a0a0a5;
+    border: 4px solid #f4f4f4;
+  }
+
+  ::-webkit-scrollbar-button {
+    display: none;
+  }
+`;
+
 const List = styled.div`
-  overflow: scroll;
+  overflow-y: auto;
   height: fit-content;
   max-height: 260px;
 `;
