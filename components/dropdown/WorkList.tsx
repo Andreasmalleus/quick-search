@@ -24,7 +24,7 @@ export const WorkList = ({ works }: DefaultProps): JSX.Element => {
             target={"_blank"}
             key={workid}
           >
-            <Container style={{ display: "flex" }}>
+            <Container>
               <Image
                 src={`${process.env.NEXT_PUBLIC_API_URL}/resources/titles/${imgSrc}`}
               />
@@ -72,12 +72,6 @@ const ScrollBarWrapper = styled.div`
   ::-webkit-scrollbar-button {
     display: none;
   }
-`;
-
-const List = styled.div`
-  overflow-y: auto;
-  height: fit-content;
-  max-height: 260px;
 `;
 
 const WorkItem = styled.a`
