@@ -1,6 +1,6 @@
 ## Getting Started
 
-Installing dependecies
+Installing dependencies
 
 ```bash
 npm install
@@ -10,7 +10,7 @@ npm install
 yarn install
 ```
 
-Runing the development server
+Running the development server
 
 ```bash
 npm run dev
