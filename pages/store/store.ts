@@ -2,10 +2,12 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import worksSlice from './slices/worksSlice';
 import dropdownSlice from './slices/dropdownSlice';
 import {createLogger} from 'redux-logger'
+import searchInputSlice from './slices/searchInputSlice';
 
 const rootReducer = combineReducers({
   works : worksSlice,
-  dropdown: dropdownSlice
+  dropdown: dropdownSlice,
+  searchInput : searchInputSlice
 })
 
 const logger = createLogger({
