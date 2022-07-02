@@ -1,11 +1,15 @@
 import styled from "styled-components";
 import Image from "next/image";
+import { useAppSelector } from "../../pages/store/hooks";
+import { searchInputSelector } from "../../pages/store/slices/searchInputSlice";
 
 export const Error = (): JSX.Element => {
+  const { searchTerm } = useAppSelector(searchInputSelector);
+
   return (
     <Container>
       <Image src={"/icons/search.svg"} width={50} height={50} />
-      <Title>No results found</Title>
+      <Title>No results found for: {searchTerm}</Title>
       <Subtitle>
         We couldn't find anything matching your search. Try again with a
         different term.

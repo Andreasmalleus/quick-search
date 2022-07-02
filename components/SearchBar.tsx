@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import styled from "styled-components";
-import { useAppDispatch } from "../pages/store/hooks";
+import { useAppDispatch, useAppSelector } from "../pages/store/hooks";
 import {
   closeDropdown,
   showDropdown,
@@ -11,9 +11,13 @@ import {
   setLoading,
 } from "../pages/store/slices/worksSlice";
 import Image from "next/image";
+import {
+  searchInputSelector,
+  setSearchTerm,
+} from "../pages/store/slices/searchInputSlice";
 
 export const SearchBar = (): JSX.Element => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const { searchTerm } = useAppSelector(searchInputSelector);
   const [focused, setFocused] = useState(false);
   const dispatch = useAppDispatch();
 
@@ -21,7 +25,7 @@ export const SearchBar = (): JSX.Element => {
     //setting delay
     const delayDebounceFn = setTimeout(() => {
       if (searchTerm != "") {
-        dispatch(fetchWorksBySearchTerm(searchTerm));
+        dispatch(fetchWorksBySearchTerm({ searchTerm }));
       }
     }, 1000);
     //cleanup function
@@ -32,7 +36,7 @@ export const SearchBar = (): JSX.Element => {
   const handleClose = () => {
     dispatch(closeDropdown());
     dispatch(clearWorks());
-    setSearchTerm("");
+    dispatch(setSearchTerm(""));
   };
 
   //handles input change
@@ -42,7 +46,7 @@ export const SearchBar = (): JSX.Element => {
       handleClose();
       return;
     }
-    setSearchTerm(value);
+    dispatch(setSearchTerm(value));
     dispatch(setLoading());
     dispatch(showDropdown());
   };
