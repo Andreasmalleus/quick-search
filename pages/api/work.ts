@@ -1,12 +1,17 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
-  const {keyword} = req.query;
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/resources/works/?start=0&max=10&expandLevel=1&search=${keyword}`, {
+  let {keyword, cursor, limit}= req.query;
+  
+  let realLimit : number;
+
+  //fetch 1 more
+  realLimit = parseInt(limit as string) + 1;
+  
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/resources/works/?start=${cursor}&max=${realLimit}&expandLevel=1&search=${keyword}`, {
     headers : {
       "Content-Type" : "application/json",
       "Accept" : "application/json",
@@ -20,5 +25,10 @@ export default async function handler(
       error: 'Something went wrong'
     })
   }
-  res.status(200).json(data);
+
+  //if the length of the array is equal to the limit that means we have more we can fetch
+  res.status(200).json({
+    work : data.work,
+    hasMore : data.work.length === realLimit
+  });
 }

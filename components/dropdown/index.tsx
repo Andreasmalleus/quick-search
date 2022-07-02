@@ -4,17 +4,24 @@ import {
   dropdownSelector,
   closeDropdown,
 } from "../../pages/store/slices/dropdownSlice";
-import { worksSelector } from "../../pages/store/slices/worksSlice";
+import { clearWorks, worksSelector } from "../../pages/store/slices/worksSlice";
 import { WorkList } from "./WorkList";
 import { Error } from "./Error";
 import { Loading } from "./Loading";
 import Image from "next/image";
 import WithPortal from "../WithPortal";
+import { setSearchTerm } from "../../pages/store/slices/searchInputSlice";
 
 export const DropDown = (): JSX.Element => {
   const { works, isLoading, hasErrors } = useAppSelector(worksSelector);
   const { isOpen } = useAppSelector(dropdownSelector);
   const dispatch = useAppDispatch();
+
+  const handleClose = () => {
+    dispatch(closeDropdown());
+    dispatch(setSearchTerm(""));
+    dispatch(clearWorks());
+  };
 
   let content = null;
 
@@ -38,7 +45,7 @@ export const DropDown = (): JSX.Element => {
               src={"/icons/close.svg"}
               width={20}
               height={20}
-              onClick={() => dispatch(closeDropdown())}
+              onClick={handleClose}
             />
           </Menu>
         )}
