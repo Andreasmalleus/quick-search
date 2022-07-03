@@ -7,6 +7,7 @@ import {
   worksSelector,
 } from "../../pages/store/slices/worksSlice";
 import { Titles, Work } from "../../types";
+import { WorkItem } from "./WorkItem";
 
 interface DefaultProps {
   works: Array<Work>;
@@ -41,21 +42,13 @@ export const WorkList = ({ works }: DefaultProps): JSX.Element => {
         const imgSrc = getImageSource(titles);
         return (
           <WorkItem
-            href={`https://www.amazon.com/search/s?k=${titleweb} ${authorweb}`}
-            target={"_blank"}
-            key={workid}
-          >
-            <Container>
-              <Image
-                src={`${process.env.NEXT_PUBLIC_API_URL}/resources/titles/${imgSrc}`}
-              />
-              <Content>
-                <Author>{authorweb}</Author>
-                <Title>{titleweb}</Title>
-              </Content>
-            </Container>
-            {works.length - 1 == index ? null : <Divider />}
-          </WorkItem>
+            id={parseInt(workid)}
+            author={authorweb}
+            title={titleweb}
+            imgSrc={imgSrc}
+            length={works.length}
+            index={index}
+          />
         );
       })}
       {hasMore ? (
@@ -114,52 +107,9 @@ const ScrollBarWrapper = styled.div`
   }
 `;
 
-const WorkItem = styled.a`
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  padding: 5px;
-  &:hover {
-    background-color: rgb(246, 249, 253);
-    border-radius: 5px;
-    cursor: pointer;
-  }
-`;
-
-const Image = styled.img`
-  width: 40px;
-  height: 50px;
-  margin-right: 8px;
-  border-radius: 5%;
-`;
-
-const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 export const Divider = styled.div`
   margin-top: 5px;
   width: 100%;
   height: 0.5px;
   background-color: grey;
-`;
-
-const Author = styled.h1`
-  color: black;
-  font-size: 15px;
-  font-weight: bold;
-  margin-bottom: 5px;
-`;
-
-const Title = styled.h2`
-  color: grey;
-  font-size: 12px;
-  font-weight: normal;
-  padding: 0px;
-  margin: 0px;
-`;
-
-const Container = styled.div`
-  display: flex;
 `;
