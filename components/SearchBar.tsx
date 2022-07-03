@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { useAppDispatch, useAppSelector } from "../pages/store/hooks";
 import {
@@ -42,6 +42,7 @@ export const SearchBar = (): JSX.Element => {
   //handles input change
   const handleChange = (input: ChangeEvent<HTMLInputElement>) => {
     const value = input.target.value;
+    //when input is empty close the dropdown
     if (value == "") {
       handleClose();
       return;
@@ -66,24 +67,37 @@ export const SearchBar = (): JSX.Element => {
         placeholder="search"
         onChange={handleChange}
         onFocus={() => setFocused(true)}
+        autoFocus
         onBlur={() => setFocused(false)}
       />
-      <Image
+      <StyledImage
+        isVisible={searchTerm != ""}
         src={"/icons/close.svg"}
         width={15}
         height={15}
-        style={{ cursor: "pointer" }}
         onClick={handleClose}
       />
     </Container>
   );
 };
 
+interface StyledImageProps {
+  isVisible: boolean;
+}
+
+const StyledImage = styled(Image)<StyledImageProps>`
+  cursor: pointer;
+  transition: opacity 0.5s linear;
+  opacity: ${(props) => (props.isVisible ? "1" : "0")};
+  visibility: ${(props) => (props.isVisible ? "visible" : "hidden")};
+`;
+
 const Container = styled.div`
   background-color: rgb(236, 239, 243);
   border-radius: 5px;
   font-family: "Graphik";
   min-width: 100px;
+  width: 100%;
   max-width: 200px;
   display: flex;
   padding-right: 4px;
