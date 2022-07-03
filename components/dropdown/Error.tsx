@@ -11,7 +11,7 @@ export const Error = (): JSX.Element => {
       <Image src={"/icons/search.svg"} width={50} height={50} />
       <Title>No results found for: {searchTerm}</Title>
       <Subtitle>
-        We couldn't find anything matching your search. Try again with a
+        We couldn&apos;t find anything matching your search. Try again with a
         different term.
       </Subtitle>
     </Container>

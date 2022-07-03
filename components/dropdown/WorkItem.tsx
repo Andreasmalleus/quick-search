@@ -40,9 +40,13 @@ export const WorkItem = ({
           <StyledImage
             src={`${process.env.NEXT_PUBLIC_API_URL}/resources/titles/${imgSrc}`}
             loading={"lazy"}
+            alt={"image of the book cover"}
           />
         ) : (
-          <PlaceholderImage src={"/images/placeholder.jpeg"} />
+          <PlaceholderImage
+            src={"/images/placeholder.jpeg"}
+            alt={"placeholder image with no significance"}
+          />
         )}
         <Content>
           <Author>{author}</Author>
