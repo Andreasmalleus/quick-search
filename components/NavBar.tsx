@@ -23,7 +23,6 @@ const Nav = styled.nav`
 const Title = styled.h1`
   font-size: 15px;
   font-weight: 800;
-  letter-spacing: 1px;
   padding: 0px;
   margin: 0px;
 `;
