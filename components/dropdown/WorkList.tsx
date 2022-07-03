@@ -95,7 +95,7 @@ const LoadMoreButton = styled.div`
 const ScrollBarWrapper = styled.div`
   overflow-y: auto;
   height: fit-content;
-  max-height: 260px;
+  max-height: 270px;
 
   &::-webkit-scrollbar {
     background-color: #fff;
