@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { Work } from '../../../types'
+import { Work } from '../../types'
 import { AppDispatch, RootState } from '../store'
 
 interface WorksState {

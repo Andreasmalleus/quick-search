@@ -1,12 +1,12 @@
 import { ClipLoader } from "react-spinners";
 import styled from "styled-components";
-import { useAppDispatch, useAppSelector } from "../../pages/store/hooks";
-import { searchInputSelector } from "../../pages/store/slices/searchInputSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { searchInputSelector } from "../../store/slices/searchInputSlice";
 import {
   fetchWorksBySearchTerm,
   setIsAppending,
   worksSelector,
-} from "../../pages/store/slices/worksSlice";
+} from "../../store/slices/worksSlice";
 import { Titles, Work } from "../../types";
 import { WorkItem } from "./WorkItem";
 

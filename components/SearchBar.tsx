@@ -1,20 +1,17 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { useAppDispatch, useAppSelector } from "../pages/store/hooks";
-import {
-  closeDropdown,
-  showDropdown,
-} from "../pages/store/slices/dropdownSlice";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { closeDropdown, showDropdown } from "../store/slices/dropdownSlice";
 import {
   clearWorks,
   fetchWorksBySearchTerm,
   setLoading,
-} from "../pages/store/slices/worksSlice";
+} from "../store/slices/worksSlice";
 import Image from "next/image";
 import {
   searchInputSelector,
   setSearchTerm,
-} from "../pages/store/slices/searchInputSlice";
+} from "../store/slices/searchInputSlice";
 
 export const SearchBar = (): JSX.Element => {
   const { searchTerm } = useAppSelector(searchInputSelector);

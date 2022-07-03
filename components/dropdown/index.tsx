@@ -1,16 +1,16 @@
 import styled from "styled-components";
-import { useAppDispatch, useAppSelector } from "../../pages/store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   dropdownSelector,
   closeDropdown,
-} from "../../pages/store/slices/dropdownSlice";
-import { clearWorks, worksSelector } from "../../pages/store/slices/worksSlice";
+} from "../../store/slices/dropdownSlice";
+import { clearWorks, worksSelector } from "../../store/slices/worksSlice";
 import { WorkList } from "./WorkList";
 import { Error } from "./Error";
 import { Loading } from "./Loading";
 import Image from "next/image";
 import WithPortal from "../WithPortal";
-import { setSearchTerm } from "../../pages/store/slices/searchInputSlice";
+import { setSearchTerm } from "../../store/slices/searchInputSlice";
 
 export const DropDown = (): JSX.Element => {
   const { works, isLoading, hasErrors } = useAppSelector(worksSelector);

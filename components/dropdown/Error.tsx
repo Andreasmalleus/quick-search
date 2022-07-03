@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Image from "next/image";
-import { useAppSelector } from "../../pages/store/hooks";
-import { searchInputSelector } from "../../pages/store/slices/searchInputSlice";
+import { useAppSelector } from "../../store/hooks";
+import { searchInputSelector } from "../../store/slices/searchInputSlice";
 
 export const Error = (): JSX.Element => {
   const { searchTerm } = useAppSelector(searchInputSelector);
