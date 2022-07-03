@@ -79,6 +79,7 @@ const Item = styled.a`
 const Content = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
 `;
 
 export const Divider = styled.div`
@@ -105,4 +106,5 @@ const Title = styled.h2`
 
 const Container = styled.div`
   display: flex;
+  align-items: center;
 `;
