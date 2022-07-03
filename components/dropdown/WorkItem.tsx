@@ -34,7 +34,6 @@ export const WorkItem = ({
     <Item
       href={`https://www.amazon.com/search/s?k=${title} ${author}`}
       target={"_blank"}
-      key={id}
     >
       <Container>
         {isImageLoaded ? (

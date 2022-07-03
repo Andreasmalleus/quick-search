@@ -42,6 +42,7 @@ export const WorkList = ({ works }: DefaultProps): JSX.Element => {
         const imgSrc = getImageSource(titles);
         return (
           <WorkItem
+            key={workid}
             id={parseInt(workid)}
             author={authorweb}
             title={titleweb}
