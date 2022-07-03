@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../pages/store/hooks";
 import { searchInputSelector } from "../../pages/store/slices/searchInputSlice";
 import {
   fetchWorksBySearchTerm,
+  setIsAppending,
   worksSelector,
 } from "../../pages/store/slices/worksSlice";
 import { Titles, Work } from "../../types";
@@ -16,7 +17,7 @@ interface DefaultProps {
 export const WorkList = ({ works }: DefaultProps): JSX.Element => {
   const dispatch = useAppDispatch();
   const { searchTerm } = useAppSelector(searchInputSelector);
-  const { hasMore } = useAppSelector(worksSelector);
+  const { hasMore, isAppending } = useAppSelector(worksSelector);
 
   const getImageSource = (titles: Titles) => {
     if (Array.isArray(titles.isbn)) {
@@ -27,6 +28,7 @@ export const WorkList = ({ works }: DefaultProps): JSX.Element => {
 
   //handles loading more works
   const loadMoreWorks = () => {
+    dispatch(setIsAppending());
     dispatch(
       fetchWorksBySearchTerm({
         searchTerm,
@@ -34,6 +36,8 @@ export const WorkList = ({ works }: DefaultProps): JSX.Element => {
       })
     );
   };
+
+  console.log(isAppending);
 
   return (
     <ScrollBarWrapper>
@@ -52,7 +56,14 @@ export const WorkList = ({ works }: DefaultProps): JSX.Element => {
           />
         );
       })}
-      {hasMore ? (
+
+      {isAppending ? (
+        <LoaderContainer>
+          <ClipLoader size={20} />
+        </LoaderContainer>
+      ) : null}
+
+      {hasMore && !isAppending ? (
         <LoadMoreButton onClick={() => loadMoreWorks()}>
           Load more
         </LoadMoreButton>
@@ -61,18 +72,21 @@ export const WorkList = ({ works }: DefaultProps): JSX.Element => {
   );
 };
 
-const LoadMoreButton = styled.div`
+const LoaderContainer = styled.div`
   padding-left: 5px;
-  margin-top: 4px;
+  height: 20px;
+  text-align: center;
+`;
+
+const LoadMoreButton = styled.div`
+  display: flex;
+  align-items: end;
+  height: 20px;
+  padding-left: 5px;
   cursor: pointer;
   font-size: 12px;
   color: rgb(0, 150, 255);
-  transform: 300ms;
   width: fit-content;
-  text-decoration: none;
-  &:hover {
-    text-decoration: underline;
-  }
 `;
 
 const ScrollBarWrapper = styled.div`
