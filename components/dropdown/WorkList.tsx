@@ -59,10 +59,9 @@ export const WorkList = ({ works }: DefaultProps): JSX.Element => {
 
       {isAppending ? (
         <LoaderContainer>
-          <ClipLoader size={20} />
+          <ClipLoader size={20} color={"rgb(0, 150, 255)"} />
         </LoaderContainer>
       ) : null}
-
       {hasMore && !isAppending ? (
         <LoadMoreButton onClick={() => loadMoreWorks()}>
           Load more
@@ -87,6 +86,10 @@ const LoadMoreButton = styled.div`
   font-size: 12px;
   color: rgb(0, 150, 255);
   width: fit-content;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const ScrollBarWrapper = styled.div`
@@ -97,13 +100,6 @@ const ScrollBarWrapper = styled.div`
   &::-webkit-scrollbar {
     background-color: #fff;
     width: 16px;
-  }
-  ::-scrollbar-track {
-    background-color: #fff;
-  }
-
-  ::-webkit-scrollbar-track:hover {
-    background-color: #f4f4f4;
   }
 
   ::-webkit-scrollbar-thumb {

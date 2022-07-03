@@ -8,7 +8,7 @@ interface LoadingProps {
 export const Loading = ({ loading = false }: LoadingProps): JSX.Element => {
   return (
     <Container>
-      <ClipLoader loading={loading} />
+      <ClipLoader loading={loading} color={"rgb(0, 150, 255)"} />
     </Container>
   );
 };
